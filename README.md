@@ -1,4 +1,4 @@
-# LLM-Orchestrated Options Analysis Agent (test.py)
+# LLM-Orchestrated Options Data Agent (test.py)
 
 An advanced Python-based options analysis system featuring sophisticated LLM orchestration for intelligent options premium matrix generation. The system uses OpenAI GPT-3.5-turbo as the central orchestrator to convert natural language inputs to structured financial data, automatically format raw Alpha Vantage options data into clean 6×6 matrices, and generate professional trading insights.
 
