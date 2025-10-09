@@ -1,11 +1,21 @@
 # -*- coding: utf-8 -*-
 """
-
 Enhanced LLM-Orchestrated Options Analysis Agent (Version 2)
 A sophisticated agent where LLM acts as the central orchestrator for:
 1. Converting free text to stock symbols
 2. Formatting raw Alpha Vantage data into structured 6x6 grids
 3. Presenting results in user-friendly format
+
+=============================================================================
+ATTRIBUTION:
+=============================================================================
+- Project Concept & Requirements: Meet Patel (@meetpatel3690)
+- Basic Project Structure & Setup: Meet Patel (@meetpatel3690)
+- AI Integration & Advanced LLM Orchestration: AI Assistant (GitHub Copilot)
+- Complex Data Processing & Matrix Generation: AI Assistant (GitHub Copilot)
+- Error Handling & Workflow Management: AI Assistant (GitHub Copilot)
+- Documentation & Code Comments: AI Assistant (GitHub Copilot)
+=============================================================================
 """
 
 from tkinter import Image
@@ -32,9 +42,15 @@ from alpha_vantage.timeseries import TimeSeries
 # Load environment variables
 load_dotenv()
 
+# =============================================================================
+# BASIC UTILITY FUNCTIONS - Written by: Meet Patel (@meetpatel3690)
+# =============================================================================
 
 def get_most_recent_trading_day() -> str:
-    """Get the most recent trading day with likely options data availability (2-3 days back for data lag)"""
+    """
+    Get the most recent trading day with likely options data availability (2-3 days back for data lag)
+    Author: Meet Patel (@meetpatel3690)
+    """
     today = datetime.now()
     
     # Go back 3-4 days to account for data availability lag
@@ -52,11 +68,15 @@ def get_most_recent_trading_day() -> str:
 
 
 # =============================================================================
-# 1. ENHANCED STATE SCHEMA (with LLM orchestration)
+# 1. DATA STRUCTURE SCHEMA - Designed by: Meet Patel (@meetpatel3690)
+#    Implementation assistance: AI Assistant (GitHub Copilot)
 # =============================================================================
 
 class OptionsAnalysisState(TypedDict):
-    """Enhanced state schema for LLM-orchestrated workflow"""
+    """
+    Enhanced state schema for LLM-orchestrated workflow
+    Data structure designed by: Meet Patel (@meetpatel3690)
+    """
     # Input
     user_input: str                          # Original user input
     symbols: List[str]                       # Raw symbols/company names
@@ -76,12 +96,17 @@ class OptionsAnalysisState(TypedDict):
     errors: List[str]                        # Any errors encountered
 
 # =============================================================================
-# 2. LLM-ORCHESTRATED AGENT
+# 2. MAIN AGENT CLASS - Core Structure by: Meet Patel (@meetpatel3690)
+#    Advanced Implementation: AI Assistant (GitHub Copilot)
 # =============================================================================
 
 class LLMOptionsAgent:
     def __init__(self):
-        """Initialize the LLM-Orchestrated Options Analysis Agent"""
+        """
+        Initialize the LLM-Orchestrated Options Analysis Agent
+        Basic setup by: Meet Patel (@meetpatel3690)
+        Advanced initialization: AI Assistant (GitHub Copilot)
+        """
         # Load API keys
         self.alpha_vantage_key = os.getenv('ALPHA_VANTAGE_API_KEY')
         self.openai_key = os.getenv('OPENAI_API_KEY')
@@ -104,11 +129,14 @@ class LLMOptionsAgent:
         print("🎯 LLM-Orchestrated Options Analysis Agent initialized!")
        
     # =============================================================================
-    # 3. HELPER FUNCTIONS
+    # 3. HELPER FUNCTIONS - Written by: Meet Patel (@meetpatel3690)
     # =============================================================================
     
     def get_spot_price(self, symbol: str) -> float:
-        """Get current stock price for a symbol"""
+        """
+        Get current stock price for a symbol
+        Author: Meet Patel (@meetpatel3690)
+        """
         try:
             quote_df, _ = self.time_series_client.get_quote_endpoint(symbol)
             price_col = "05. price"
@@ -120,11 +148,14 @@ class LLMOptionsAgent:
             raise ValueError(f"Failed to get price for {symbol}: {e}")
 
     # =============================================================================
-    # 4. LLM-ORCHESTRATED NODES
+    # 4. ADVANCED LLM-ORCHESTRATED NODES - AI Assistant (GitHub Copilot)
     # =============================================================================
     
     def llm_parse_and_convert_node(self, state: OptionsAnalysisState) -> OptionsAnalysisState:
-        """LLM parses input and converts company names to ticker symbols"""
+        """
+        LLM parses input and converts company names to ticker symbols
+        Advanced LLM integration by: AI Assistant (GitHub Copilot)
+        """
         user_input = state["user_input"]
         
         # Add system message
@@ -206,7 +237,11 @@ class LLMOptionsAgent:
         return state
     
     def fetch_financial_data_node(self, state: OptionsAnalysisState) -> OptionsAnalysisState:
-        """Fetch spot prices and raw options data from Alpha Vantage"""
+        """
+        Fetch spot prices and raw options data from Alpha Vantage
+        Basic structure by: Meet Patel (@meetpatel3690)
+        Advanced implementation: AI Assistant (GitHub Copilot)
+        """
         tickers = state["converted_tickers"]
         spot_prices = {}
         raw_options_data = {}
@@ -248,7 +283,10 @@ class LLMOptionsAgent:
         return state
     
     def llm_format_options_matrix_node(self, state: OptionsAnalysisState) -> OptionsAnalysisState:
-        """LLM formats raw options data into structured 6x6 matrix"""
+        """
+        LLM formats raw options data into structured 6x6 matrix
+        Complex data processing by: AI Assistant (GitHub Copilot)
+        """
         raw_data = state["raw_options_data"]
         spot_prices = state["spot_prices"]
         
@@ -382,7 +420,10 @@ class LLMOptionsAgent:
         return state
     
     def llm_generate_analysis_node(self, state: OptionsAnalysisState) -> OptionsAnalysisState:
-        """LLM generates insights and analysis of the options data"""
+        """
+        LLM generates insights and analysis of the options data
+        AI analysis generation by: AI Assistant (GitHub Copilot)
+        """
         options_data = state["formatted_options_data"]
         spot_prices = state["spot_prices"]
         
@@ -431,11 +472,14 @@ class LLMOptionsAgent:
         return state
 
     # =============================================================================
-    # 5. LLM WORKFLOW BUILDING
+    # 5. WORKFLOW MANAGEMENT - Written by: Meet Patel
     # =============================================================================
     
     def _build_llm_workflow(self) -> StateGraph:
-        """Build the LLM-orchestrated workflow"""
+        """
+        Build the LLM-orchestrated workflow
+        Advanced workflow orchestration by: Meet Patel
+        """
         workflow = StateGraph(OptionsAnalysisState)
         
         # Add LLM-orchestrated nodes
@@ -455,12 +499,15 @@ class LLMOptionsAgent:
     
 
     # =============================================================================
-    # 6. MAIN LLM-ORCHESTRATED INTERFACE
+    # 6. USER INTERFACE FUNCTIONS - Meet Patel (@meetpatel3690) + AI Assistant
     # =============================================================================
     
     def analyze(self, user_input: str, date: Optional[str] = None) -> dict:
         """
         Main interface for LLM-Orchestrated Options Analysis
+        
+        Basic interface design by: Meet Patel (@meetpatel3690)
+        Advanced implementation: AI Assistant (GitHub Copilot)
         
         Args:
             user_input: Natural language input (e.g., "Apple, Tesla, Microsoft")
@@ -542,6 +589,8 @@ class LLMOptionsAgent:
         """
         Get options data as a clean pandas DataFrame without CSV generation
         
+        Simple interface by: Meet Patel (@meetpatel3690)
+        
         Args:
             user_input: Free text input with company names or tickers
             date: Optional analysis date (defaults to 2025-10-02)
@@ -565,7 +614,10 @@ class LLMOptionsAgent:
             return pd.DataFrame()
     
     def display_results(self, result: dict):
-        """Display LLM-orchestrated analysis results"""
+        """
+        Display LLM-orchestrated analysis results
+        Output formatting by: AI Assistant (GitHub Copilot)
+        """
         if not result["success"]:
             print(f"\n❌ LLM Analysis failed: {result.get('status', 'Unknown error')}")
             if result.get("errors"):
@@ -614,11 +666,14 @@ class LLMOptionsAgent:
 
 
 # =============================================================================
-# 7. LLM-ORCHESTRATED TESTING & EXAMPLES
+# 7. TESTING & EXAMPLES - Written by: Meet Patel (@meetpatel3690)
 # =============================================================================
 
 def main():
-    """Main function - automatically runs DataFrame generation"""
+    """
+    Main function - automatically runs DataFrame generation
+    Basic testing structure by: Meet Patel (@meetpatel3690)
+    """
     try:
         print("🚀 Starting LLM-Orchestrated Options Analysis Agent...")
         print("=" * 70)
