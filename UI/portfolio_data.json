@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "symbol": "AAPL",
+    "name": "Apple Inc",
+    "shares": 300,
+    "price": 270.14,
+    "date_added": "2025-11-05 20:34"
+  },
+  {
+    "id": 2,
+    "symbol": "TSLA",
+    "name": "Tesla Inc",
+    "shares": 400,
+    "price": 462.07,
+    "date_added": "2025-11-05 20:35"
+  },
+  {
+    "id": 3,
+    "symbol": "META",
+    "name": "Meta Platforms Inc - Class A",
+    "shares": 500,
+    "price": 635.95,
+    "date_added": "2025-11-05 20:35"
+  }
+]
