@@ -58,3 +58,37 @@ class StockAPI:
         except Exception as e:
             print(f"Unexpected error: {e}")
             return []
+    
+    def get_stock_price(self, symbol):
+        """
+        Get current stock price for a symbol
+        
+        Args:
+            symbol (str): Stock ticker symbol
+            
+        Returns:
+            float: Current stock price, or None if error
+        """
+        try:
+            params = {
+                'function': 'GLOBAL_QUOTE',
+                'symbol': symbol,
+                'apikey': self.api_key
+            }
+            
+            response = requests.get(self.base_url, params=params, timeout=10)
+            response.raise_for_status()
+            
+            data = response.json()
+            
+            if 'Global Quote' in data and '05. price' in data['Global Quote']:
+                return float(data['Global Quote']['05. price'])
+            
+            return None
+            
+        except requests.exceptions.RequestException as e:
+            print(f"Error getting stock price: {e}")
+            return None
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            return None
