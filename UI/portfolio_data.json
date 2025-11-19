@@ -22,5 +22,13 @@
     "shares": 500,
     "price": 635.95,
     "date_added": "2025-11-05 20:35"
+  },
+  {
+    "id": 4,
+    "symbol": "MDB",
+    "name": "MongoDB Inc - Class A",
+    "shares": 200,
+    "price": 337.86,
+    "date_added": "2025-11-18 19:42"
   }
 ]
