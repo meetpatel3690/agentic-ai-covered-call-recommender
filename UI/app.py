@@ -367,7 +367,7 @@ with col2:
     # Portfolio list
     if st.session_state.portfolio:
         with st.container(height=550):
-            for stock in st.session_state.portfolio:
+            for idx, stock in enumerate(st.session_state.portfolio):
                 st.markdown('<div class="portfolio-card">', unsafe_allow_html=True)
                 
                 stock_col, button_col = st.columns([5, 1])
@@ -384,10 +384,10 @@ with col2:
                         st.caption("Price not available")
                 
                 with button_col:
-                    if st.button("✏️", key=f"update_{stock['id']}", help="Update shares"):
+                    if st.button("✏️", key=f"update_{idx}_{stock['symbol']}", help="Update shares"):
                         open_update_modal(stock)
                         st.rerun()
-                    if st.button("🗑️", key=f"remove_{stock['id']}", help="Remove stock"):
+                    if st.button("🗑️", key=f"remove_{idx}_{stock['symbol']}", help="Remove stock"):
                         remove_stock(stock['id'])
                         st.success("Removed!")
                         st.rerun()
