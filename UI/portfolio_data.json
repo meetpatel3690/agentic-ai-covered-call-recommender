@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "symbol": "AAPL",
+    "name": "Apple Inc",
+    "shares": 469,
+    "price": 276.97,
+    "date_added": "2025-11-25 16:02"
+  },
+  {
+    "id": 2,
+    "symbol": "MSFT",
+    "name": "Microsoft Corporation",
+    "shares": 350,
+    "price": 476.99,
+    "date_added": "2025-11-25 16:03"
+  },
+  {
+    "id": 3,
+    "symbol": "TSLA",
+    "name": "Tesla Inc",
+    "shares": 100,
+    "price": 417.78,
+    "date_added": "2025-11-25 16:03"
+  }
+]
