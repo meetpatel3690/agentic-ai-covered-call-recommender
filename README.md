@@ -27,10 +27,74 @@ An enterprise-grade full-stack application that revolutionizes options trading a
 
 **For Developers:**
 - Demonstrates production-ready LangGraph implementation
-- Showcases AI-assisted development (75% AI-generated code)
+- Showcases AI-assisted development (80% AI-generated code)
 - Provides comprehensive testing framework (100% coverage)
 - Implements clean separation of concerns with dual agents
 - Features complete documentation for every component
+
+## 📁 Project Structure
+
+```
+Agentic---AI---Stock---Recommendation/
+│
+├── 📂 backend/                        # Core Agent Implementations
+│   ├── __init__.py
+│   ├── options_data_agent.py         # Agent 1: 3-Node Data Fetching
+│   └── strategy_recommendation_agent_langgraph.py  # Agent 2: 10-Node Analysis
+│
+├── 📂 UI/                             # Streamlit Web Application
+│   ├── app.py                        # Main entry point
+│   ├── portfolio_data.json           # Portfolio persistence
+│   ├── requirements.txt              # UI-specific dependencies
+│   ├── 📂 pages/
+│   │   └── mainpage.py              # Main portfolio & analysis page
+│   └── 📂 utils/
+│       ├── __init__.py
+│       └── stock_api.py             # Stock search & autocomplete
+│
+├── 📂 Documentations/                 # Comprehensive Documentation
+│   ├── README_MASTER.md              # Master documentation index
+│   ├── COMPLETE_AGENT2_PROMPTS.md    # All AI prompts used (50+)
+│   ├── SCORING_FORMULA_VERIFICATION.md  # Formula enforcement
+│   ├── AGENT2_data_flow_analysis.md  # Complete data flow
+│   ├── AGENT_2_PART_2_IMPLEMENTATION_SPEC.md  # Technical spec
+│   ├── AI_PROMPTS_FOR_AGENT_2_PART_2_IMPLEMENTATION.md  # Part 2 prompts
+│   └── QUICK_REFERENCE.md            # One-page reference card
+│
+├── 📂 Test_Cases/                     # Comprehensive Test Suite
+│   ├── test_phase1.py                # Phase 1: Data validation
+│   ├── test_phase2.py                # Phase 2: Formula verification
+│   ├── test_phase3.py                # Phase 3: Merge logic
+│   ├── test_phase4.py                # Phase 4: Scoring
+│   ├── test_phase5.py                # Phase 5: Week identification
+│   ├── test_phase6.py                # Phase 6: Primary selection
+│   ├── test_phase7.py                # Phase 7: Secondary logic
+│   ├── test_phase8.py                # Phase 8: Contract allocation
+│   ├── test_phase9.py                # Phase 9: Income projection
+│   └── test_phase10_validation.py    # Phase 10: End-to-end
+│
+├── 📄 Configuration Files
+│   ├── .env                          # API keys (create this - not in git)
+│   ├── .gitignore                    # Git exclusions
+│   ├── pyproject.toml                # Project metadata & dependencies
+│   ├── requirements.txt              # Python dependencies
+│   └── README.md                     # This file
+│
+└── 📄 Additional Files
+    ├── backend_integration.py        # Backend integration tests
+    └── HOW_TO_RUN.md                # Quick start guide
+```
+
+**Key Directories:**
+- **`backend/`**: Core AI agents (1,800+ lines of production code)
+- **`UI/`**: Web interface with portfolio management
+- **`Documentations/`**: 15+ comprehensive documentation files
+- **`Test_Cases/`**: 10 phases of tests (100% coverage)
+
+```
+
+---
+
 
 ### 🏗️ Architecture Highlights
 
@@ -49,7 +113,7 @@ An enterprise-grade full-stack application that revolutionizes options trading a
 - 💰 Income projection calculations
 - 🧠 AI-generated professional trading insights
 
-**Built by:** Team Nexus (Meet Patel, Bhagyalakshmi Putturu, Balaji Sunku)  
+**Built by:** Team Nexus (Meet Patel, Bhagyalakshmi Putturu, Chitra Garlapati , Vineeth Reddy , Vamsi Krishna)  
 **AI Implementation:** 75% GitHub Copilot, 25% Human Expertise  
 **Development Time:** 12 hours (vs 40+ hours traditional coding)  
 **Project Status:** ✅ Production-Ready (100% Test Coverage)  
@@ -178,7 +242,6 @@ pip install -r requirements.txt
 streamlit run UI/app.py
 ```
 
-**Application opens at:** `http://localhost:8501`
 
 **First-Time Setup Checklist:**
 - [ ] Python 3.13+ installed
@@ -646,45 +709,6 @@ class StrategyAnalysisState(TypedDict):
     messages: List[BaseMessage]        # LLM conversation
 ```
 
-#### **Key Algorithms**
-
-**1. Scoring Formula (Node 4)**
-```python
-Score = Premium × (1 - Delta)
-
-Example:
-Premium = $5.25, Delta = 0.45
-Score = 5.25 × (1 - 0.45) = 5.25 × 0.55 = 2.89
-
-Interpretation:
-- High premium, low delta → High score (good opportunity)
-- High premium, high delta → Lower score (risky)
-- Delta missing (None) → Treated as 0 (score = premium)
-```
-
-**2. Buffer Strategy (Node 8)**
-```python
-def calculate_buffer(total_contracts):
-    if total_contracts >= 3:
-        return total_contracts - 1  # Keep 1 as buffer
-    else:
-        return total_contracts      # Use all (not enough to buffer)
-
-Examples:
-500 shares → 5 contracts → Recommend 4 (keep 1 buffer)
-200 shares → 2 contracts → Recommend 2 (no buffer)
-```
-
-**3. Multi-Trade Logic (Node 7)**
-```python
-def should_find_secondary(primary):
-    if primary['week'] <= 2:
-        # Early in month, look for secondary >= 7 days later
-        return True
-    else:
-        # Week 3+ → Too late for secondary trade
-        return False
-```
 
 ---
 
@@ -755,64 +779,6 @@ Higher Score = Better Risk-Adjusted Return
 
 ---
 
-## 📁 Project Structure
-
-```
-Agentic---AI---Stock---Recommendation/
-│
-├── 📂 backend/                        # Core Agent Implementations
-│   ├── __init__.py
-│   ├── options_data_agent.py         # Agent 1: 3-Node Data Fetching
-│   └── strategy_recommendation_agent_langgraph.py  # Agent 2: 10-Node Analysis
-│
-├── 📂 UI/                             # Streamlit Web Application
-│   ├── app.py                        # Main entry point
-│   ├── portfolio_data.json           # Portfolio persistence
-│   ├── requirements.txt              # UI-specific dependencies
-│   ├── 📂 pages/
-│   │   └── mainpage.py              # Main portfolio & analysis page
-│   └── 📂 utils/
-│       ├── __init__.py
-│       └── stock_api.py             # Stock search & autocomplete
-│
-├── 📂 Documentations/                 # Comprehensive Documentation
-│   ├── README_MASTER.md              # Master documentation index
-│   ├── COMPLETE_AGENT2_PROMPTS.md    # All AI prompts used (50+)
-│   ├── SCORING_FORMULA_VERIFICATION.md  # Formula enforcement
-│   ├── AGENT2_data_flow_analysis.md  # Complete data flow
-│   ├── AGENT_2_PART_2_IMPLEMENTATION_SPEC.md  # Technical spec
-│   ├── AI_PROMPTS_FOR_AGENT_2_PART_2_IMPLEMENTATION.md  # Part 2 prompts
-│   └── QUICK_REFERENCE.md            # One-page reference card
-│
-├── 📂 Test_Cases/                     # Comprehensive Test Suite
-│   ├── test_phase1.py                # Phase 1: Data validation
-│   ├── test_phase2.py                # Phase 2: Formula verification
-│   ├── test_phase3.py                # Phase 3: Merge logic
-│   ├── test_phase4.py                # Phase 4: Scoring
-│   ├── test_phase5.py                # Phase 5: Week identification
-│   ├── test_phase6.py                # Phase 6: Primary selection
-│   ├── test_phase7.py                # Phase 7: Secondary logic
-│   ├── test_phase8.py                # Phase 8: Contract allocation
-│   ├── test_phase9.py                # Phase 9: Income projection
-│   └── test_phase10_validation.py    # Phase 10: End-to-end
-│
-├── 📄 Configuration Files
-│   ├── .env                          # API keys (create this - not in git)
-│   ├── .gitignore                    # Git exclusions
-│   ├── pyproject.toml                # Project metadata & dependencies
-│   ├── requirements.txt              # Python dependencies
-│   └── README.md                     # This file
-│
-└── 📄 Additional Files
-    ├── backend_integration.py        # Backend integration tests
-    └── HOW_TO_RUN.md                # Quick start guide
-```
-
-**Key Directories:**
-- **`backend/`**: Core AI agents (1,800+ lines of production code)
-- **`UI/`**: Web interface with portfolio management
-- **`Documentations/`**: 15+ comprehensive documentation files
-- **`Test_Cases/`**: 10 phases of tests (100% coverage)
 
 ---
 
@@ -1054,66 +1020,6 @@ APPLE (AAPL) - Current Price: $258.02
 
 **Total:** 135+ test cases, 100% passing
 
-### **Running Tests**
-
-```bash
-# Run all tests
-pytest Test_Cases/ -v
-
-# Run specific phase
-pytest Test_Cases/test_phase2.py -v
-
-# Run with coverage report
-pytest Test_Cases/ --cov=backend --cov-report=html
-
-# Run integration tests only
-pytest Test_Cases/test_phase10_validation.py -v
-```
-
-### **Key Test Scenarios**
-
-**Formula Verification (Phase 2):**
-```python
-def test_scoring_formula():
-    # Test Case 1: Normal delta
-    premium, delta = 2.5, 0.3
-    expected_score = 2.5 × (1 - 0.3) = 1.75
-    assert calculate_score(premium, delta) == 1.75
-
-    # Test Case 2: Delta missing
-    premium, delta = 3.0, None
-    expected_score = 3.0 × (1 - 0) = 3.0
-    assert calculate_score(premium, delta) == 3.0
-```
-
-**Multi-Trade Logic (Phase 7):**
-```python
-def test_secondary_selection():
-    # Week 1 primary → Should find secondary
-    primary = {'week': 1, 'expiry': '2024-12-06'}
-    assert should_find_secondary(primary) == True
-
-    # Week 3 primary → NO secondary
-    primary = {'week': 3, 'expiry': '2024-12-20'}
-    assert should_find_secondary(primary) == False
-```
-
-**Buffer Strategy (Phase 8):**
-```python
-def test_buffer_allocation():
-    # 500 shares → 5 contracts
-    # 5 >= 3, so keep 1 buffer → Recommend 4
-    assert allocate_contracts(500, has_secondary=False) == {
-        'total': 5, 'primary': 4, 'buffer': 1
-    }
-
-    # 200 shares → 2 contracts
-    # 2 < 3, so no buffer → Recommend 2
-    assert allocate_contracts(200, has_secondary=False) == {
-        'total': 2, 'primary': 2, 'buffer': 0
-    }
-```
-
 ---
 
 ## 🔑 API Configuration
@@ -1206,9 +1112,9 @@ MAX_STOCKS_PER_ANALYSIS=5      # Limit for free tier
 | Metric | Value | Details |
 |--------|-------|---------|
 | **Total Lines of Code** | 1,878 lines | `strategy_recommendation_agent_langgraph.py` |
-| **AI-Generated Code** | ~1,400 lines (75%) | GitHub Copilot contribution |
+| **AI-Generated Code** | ~4,800 lines (80%) | GitHub Copilot contribution |
 | **Human-Written Specs** | ~300 lines (16%) | Prompts, requirements, tests |
-| **Human Direct Coding** | ~178 lines (9%) | Bug fixes, optimizations |
+| **Human Direct Coding** | ~600 lines (20%) | Bug fixes, optimizations |
 | **Number of AI Prompts** | 50+ prompts | Documented in `COMPLETE_AGENT2_PROMPTS.md` |
 | **Development Phases** | 16 phases | Part 1 (5) + Part 2 (11) |
 | **Development Time** | 12 hours | vs 40+ hours traditional |
@@ -1216,14 +1122,14 @@ MAX_STOCKS_PER_ANALYSIS=5      # Limit for free tier
 
 ### **AI's Contribution Breakdown**
 
-**What AI Generated (75%):**
-1. ✅ Complete LangGraph architecture (200 lines)
+**What AI Generated (80%):**
+1. ✅ Complete LangGraph architecture
    - StateGraph setup
    - TypedDict schemas
    - Workflow orchestration
    - Node connections
 
-2. ✅ All 10 node functions (800 lines)
+2. ✅ All 10 node functions 
    - Data validation logic
    - Premium analysis algorithms
    - Scoring calculations
@@ -1233,7 +1139,7 @@ MAX_STOCKS_PER_ANALYSIS=5      # Limit for free tier
    - Highlighting preparation
    - LLM integration (prompt engineering)
 
-3. ✅ Helper functions (300 lines)
+3. ✅ Helper functions 
    - `merge_premium_delta_data()`
    - `calculate_option_score()`
    - `get_week_of_month()`
@@ -1242,20 +1148,20 @@ MAX_STOCKS_PER_ANALYSIS=5      # Limit for free tier
    - `calculate_contract_allocation()`
    - `calculate_income_projection()`
 
-4. ✅ Test suite (150 lines)
+4. ✅ Test suite 
    - Unit tests for each function
    - Integration tests for workflows
    - Edge case coverage
    - Regression tests
 
-5. ✅ Documentation (2,000+ lines)
+5. ✅ Documentation 
    - Technical specifications
    - User guides
    - API documentation
    - Flow diagrams
    - Code comments
 
-**Total AI-Generated:** ~3,450 lines across all files
+**Total AI-Generated:** ~4,800 lines across all files
 
 ### **Human's Contribution (25%):**
 
@@ -1340,23 +1246,7 @@ Return tuple: (score: float, confidence: str)
 
 **Result:** AI generates correct implementation on first try 90% of the time
 
-### **ROI Analysis**
 
-**Traditional Development (40 hours):**
-- Planning: 4 hours
-- Coding: 24 hours
-- Testing: 8 hours
-- Debugging: 4 hours
-- **Total:** 40 hours @ $75/hr = $3,000
-
-**AI-Assisted Development (12 hours):**
-- Prompt Engineering: 3 hours
-- AI Coding: 6 hours (75% automated)
-- Human Validation: 2 hours
-- Testing & Refinement: 1 hour
-- **Total:** 12 hours @ $75/hr = $900
-
-**Savings:** $2,100 (70% cost reduction) + 28 hours saved
 
 **See Complete Documentation:**
 - `Documentations/COMPLETE_AGENT2_PROMPTS.md` - All 50+ prompts used
@@ -1482,16 +1372,7 @@ Return tuple: (score: float, confidence: str)
   - Broker integration (TD Ameritrade, etc.)
   - Automated trade execution
 
-### **Community Requests**
 
-**Vote on Features:** [GitHub Discussions](link-here)
-
-**Top Requested:**
-1. Mobile app (iOS/Android)
-2. Dark mode UI
-3. Export to PDF/Excel
-4. Integration with TradingView
-5. Options spread builder
 
 ---
 
@@ -1502,33 +1383,62 @@ Return tuple: (score: float, confidence: str)
 <table>
 <tr>
 <td align="center">
-<h4>Meet Patel</h4>
-<p>Lead Developer & AI Integration Specialist</p>
+<h4>Bhagya Lakshmi Putturu</h4>
+<p>Team Management & Integration Lead</p>
 <p>
-• LangGraph Architecture<br>
-• Prompt Engineering<br>
-• Testing Framework<br>
-• Documentation Lead
+• Team Management<br>
+• Agent Development Support<br>
+• Integration<br>
+• Presentation<br>
+• UI Design<br>
+• Documentation
 </p>
 </td>
 <td align="center">
-<h4>Bhagyalakshmi Putturu</h4>
-<p>Algorithm Design & Financial Logic</p>
+<h4>Meet Hiteshbhai Patel</h4>
+<p>Architecture & Development Lead</p>
 <p>
-• Scoring Formula Design<br>
-• Multi-Trade Strategy<br>
-• Risk Management Logic<br>
-• UI/UX Design
+• Architecture Planning<br>
+• Agent Development<br>
+• Agent Communication Development<br>
+• Testing<br>
+• Presentation<br>
+• Documentation
+</p>
+</td>
+</tr>
+<tr>
+<td align="center">
+<h4>Chitra Lakshmi Garlapati</h4>
+<p>Development & Testing Specialist</p>
+<p>
+• Agent Development<br>
+• Testing<br>
+• Integration<br>
+• Presentation<br>
+• Documentation
 </p>
 </td>
 <td align="center">
-<h4>Balaji Sunku</h4>
-<p>Data Integration & Backend</p>
+<h4>Vineeth Reddy Chapala</h4>
+<p>Presentation Lead</p>
 <p>
-• Alpha Vantage Integration<br>
-• Data Processing Pipeline<br>
-• State Management<br>
-• Performance Optimization
+• Architecture Planning<br>
+• Testing<br>
+• Presentation<br>
+• Documentation
+</p>
+</td>
+</tr>
+<tr>
+<td align="center" colspan="2">
+<h4>Vamsi Krishna Vuppalapati</h4>
+<p>Documentation Lead</p>
+<p>
+• UI Design<br>
+• Testing<br>
+• Presentation<br>
+• Documentation
 </p>
 </td>
 </tr>
@@ -1537,7 +1447,7 @@ Return tuple: (score: float, confidence: str)
 ### **AI Contributions**
 
 **GitHub Copilot:**
-- 75% of codebase generation (1,400+ lines)
+- 80% of codebase generation (4,800+ lines)
 - Function implementations
 - Test case generation
 - Documentation assistance
@@ -1597,7 +1507,7 @@ This project implements concepts from:
 
 **MIT License**
 
-Copyright (c) 2024 Team Nexus (Meet Patel, Bhagyalakshmi Putturu, Balaji Sunku)
+Copyright (c) 2025 Team Nexus (Meet Patel, Bhagyalakshmi Putturu, Chitra Garlapati , Vineeth Reddy , Vamsi Krishna )
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1652,10 +1562,6 @@ This software is for educational and informational purposes only. It does not co
 - 🐛 **Issues**: [GitHub Issues](https://github.com/BhagyalakshmiPutturu/Agentic---AI---Stock---Recommendation/issues)
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/BhagyalakshmiPutturu/Agentic---AI---Stock---Recommendation/discussions)
 
-### **Team Contact**
-- 📧 **Email**: [team-contact-here]
-- 💼 **LinkedIn**: [profiles-here]
-- 🐦 **Twitter**: [handles-here]
 
 ### **Getting Help**
 1. 📚 Check documentation in `Documentations/` folder
@@ -1671,7 +1577,7 @@ This software is for educational and informational purposes only. It does not co
 
 **Powered by AI** | **LangGraph Architecture** | **Production-Ready**
 
-**Last Updated:** December 5, 2024  
+**Last Updated:** December 5, 2025  
 **Version:** 2.0.0 (Production Release)
 
 ---
