@@ -1,12 +1,40 @@
-# 🔄 **Data Flow Analysis - Strategy Recommendation Agent (Agent 2)**
+# 🔄 Agent 2 - Node-to-Node Data Flow Analysis
 
-*How data moves and transforms through the premium analysis system*
+## Complete Data Journey Through 10-Node LangGraph Pipeline
 
 ---
 
-## 🎯 **WHAT IS AGENT 2?**
+## 📊 State Schema Overview
 
-Agent 2 (Strategy Recommendation Agent) takes the clean 6×6 options matrix from Agent 1 and analyzes it to identify the **highest premium opportunities** for each stock. It then highlights these cells visually (in green) and provides actionable trading recommendations.
+**StrategyAnalysisState** - Single Source of Truth for All 10 Nodes
+
+```python
+{
+    # INPUT DATA (From Agent 1 / User)
+    'options_dataframe': pd.DataFrame,      # 6×6 premium grid
+    'delta_data': pd.DataFrame,             # 6×6 delta grid
+    'portfolio_data': Dict,                 # {stock: shares_owned}
+    'current_date': str,                    # "YYYY-MM-DD"
+    'analysis_mode': str,                   # "premium_delta"
+    
+    # PROCESSING STATES (Updated by Nodes)
+    'validated_data': bool,                 # Node 1 output
+    'merged_data': pd.DataFrame,            # Node 3 output
+    'primary_recommendations': Dict,        # Node 4 output
+    'secondary_recommendations': Dict,      # Node 5 output
+    'contract_allocations': Dict,           # Node 6 output
+    'income_projections': Dict,             # Node 7 output
+    'recommendations': List[Dict],          # Node 8 output
+    'highlighted_cells': Dict,              # Node 9 output
+    'llm_insights': str,                    # Node 10 output
+    
+    # METADATA
+    'status': str,                          # Workflow progress tracker
+    'errors': List[str],                   # Error accumulator
+    'messages': List[BaseMessage],         # LLM conversation history
+    'analysis_timestamp': str              # ISO timestamp
+}
+```
 
 **Think of it like**: A financial advisor reviewing a spreadsheet of options prices and circling the best deals for you.
 
@@ -520,4 +548,4 @@ Visual Display with Green Highlights
 
 ---
 
-*This data flow documentation demonstrates Meet Patel's ability to build intelligent analysis agents that transform raw data into actionable trading insights!* 🚀
+
