@@ -2,6 +2,20 @@
 
 **A Production-Ready Options Analysis Platform with Dual-Agent LangGraph Architecture**
 
+## My Role — Technical Lead & Primary Developer
+Team Nexus capstone, University of Houston–Clear Lake (5 members).
+I designed and wrote the core codebase end to end; teammates led documentation, presentation, and QA.
+
+
+**What I built**
+- **Agent architecture:** Designed the LangGraph workflow, including the agent that fetches live options data and the Strategy Recommendation Engine that scores covered-call opportunities by premium and delta.
+- **Data layer:** Built ingestion from Alpha Vantage and yfinance for live stock prices and option chains, with cleaning and validation before data reaches the agents.
+- **LLM integration:** Integrated OpenAI and Gemini models into the agent workflow for strategy reasoning and recommendations.
+- **Recommendation logic:** Implemented contract-allocation and projected monthly income calculations based on a user's portfolio holdings.
+- **App:** Built the Streamlit interface where users enter holdings and review recommended covered-call strategies.
+- **Testing:** Wrote unit tests using test-driven development to keep agent outputs consistent across runs.
+
+Original team repository: https://github.com/BhagyalakshmiPutturu/Agentic---AI---Stock---Recommendation
 <div align="center">
 
 [![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
