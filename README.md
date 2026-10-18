@@ -5,7 +5,7 @@
 ## My Role — Technical Lead & Primary Developer
 Team Nexus capstone, University of Houston–Clear Lake (5 members).
 I designed and wrote the core codebase end to end; teammates led documentation, presentation, and QA.
-
+Commit history: authored 18 of 22 commits (`git shortlog -sn`).
 
 **What I built**
 - **Agent architecture:** Designed the LangGraph workflow, including the agent that fetches live options data and the Strategy Recommendation Engine that scores covered-call opportunities by premium and delta.
